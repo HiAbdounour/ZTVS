@@ -5,7 +5,7 @@ import votedata from "../../votedata.json";
 import { saveAnswer } from "../services/saveAnswer";
 
 export default function VotePage() {
-  
+
   return (
     <main className="vote">
       <h1 className="mainquestion">{votedata.question}</h1>

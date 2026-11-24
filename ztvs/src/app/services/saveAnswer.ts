@@ -3,15 +3,18 @@ const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // test with hello()
 export async function saveAnswer(answ:string){
-console.log(API_URL);
-  const response = await fetch(`${API_URL}/api/hello`);
 
-  if(!response.ok) {
-    console.log(response.text+response.status.toString());
-  }
-  else{
-    console.log(answ);
-  }
+    const response = await fetch(`${API_URL}/api/vote`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ "answer":answ })
+    });
 
-  //return response.json();
+    if (!response.ok) {
+        alert(`Une erreur a eu lieu : Erreur ${response.status}`);
+    }
+    else {
+        console.log(answ);
+    }
+
 }

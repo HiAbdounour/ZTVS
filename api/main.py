@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+from pydantic import BaseModel
+from typing import Literal
 
 ## BaseModel from Pydantic also :: @ : response_model=this class and transform into this class like a function
+class SimpleAnswer(BaseModel):
+    answer: Literal['Y','N','W']
 
 app = FastAPI()
 
@@ -14,10 +18,12 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/api/hello")
-async def hello():
+@app.post("/api/vote")
+async def retrieve_answer(c:SimpleAnswer):
+    print(c.answer)
     return {
-        "message": "Bonjour depuis Python !"
+        "status":"OK",
+        "message":"Vote pris en compte"
     }
 
 @app.get("/health")

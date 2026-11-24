@@ -2,14 +2,10 @@
 
 import "./vote.css";
 import votedata from "../../votedata.json";
+import { saveAnswer } from "../services/saveAnswer";
 
 export default function VotePage() {
-
-  function saveAnswer(answer: string) {
-    const vote = answer; // O, N ou P
-    console.log(vote);
-  }
-
+  
   return (
     <main className="vote">
       <h1 className="mainquestion">{votedata.question}</h1>
